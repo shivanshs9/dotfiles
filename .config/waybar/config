@@ -1,0 +1,97 @@
+{
+  "layer": "top",
+  "height": 30,
+  "modules-left": ["sway/workspaces", "tray"],
+  "modules-center": ["clock#time", "clock#date"],
+  "modules-right": [
+    "custom/net",
+    "custom/ping",
+    "memory",
+    "cpu",
+    "battery",
+    "pulseaudio"
+  ],
+  "clock#time": {
+    "interval": 10,
+    "format": " {:%H:%M}",
+    "tooltip": false
+  },
+  "clock#date": {
+    "interval": 20,
+    "format": " {:%e %b %Y}", // Icon: calendar-alt
+    "tooltip-format": "{:%A}",
+    "tooltip": true
+  },
+  "battery": {
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{capacity}% {icon}",
+    "format-charging": "{capacity}% ",
+    "format-plugged": "{capacity}% ",
+    "format-alt": "{time} {icon}",
+    "format-icons": ["", "", "", "", ""]
+  },
+  "cpu": {
+    "interval": 5,
+    "tooltip": false,
+    "format": " {usage}%", //Icon: microchip
+    "states": {
+      "warning": 70,
+      "critical": 90
+    }
+  },
+  "memory": {
+    "interval": 5,
+    "format": " {}%", // Icon: memory
+    "states": {
+      "warning": 70,
+      "critical": 90
+    }
+  },
+  "custom/ping": {
+    "format": "{}",
+    "interval": 10,
+    "exec": "$HOME/.config/waybar/get_ping.sh"
+  },
+  "custom/net": {
+    "format": "{}",
+    "interval": 1,
+    "exec": "$HOME/.config/waybar/get_network.sh"
+  },
+  "pulseaudio": {
+    "format": "{volume}% {icon}",
+    "format-bluetooth": "{volume}% {icon}",
+    "format-muted": "",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", ""]
+    },
+    "scroll-step": 1,
+    "on-click": "pavucontrol"
+  },
+  "sway/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": false,
+    "format": "{name}: {icon}",
+    "format-icons": {
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": "",
+      "8": "",
+      "9": "",
+      "10": "",
+      "urgent": "",
+      "focused": "",
+      "default": ""
+    }
+  }
+}

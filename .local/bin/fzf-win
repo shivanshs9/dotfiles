@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+#set -ex
+
+TERM=alacritty
+list=""
+while IFS= read line; do
+	list="$list\n$line"
+done
+
+#>&2 echo -e "$list"
+
+class="overlay"
+if [[ $# -ge 1 ]]; then
+	case "$1" in
+		--)
+			shift
+			;;
+		*)
+			class="$1"
+			shift
+			if [[ $# -ge 1 ]]; then shift; fi
+			;;
+	esac
+fi
+
+exec $TERM --class "$class" -e sh -c "echo -e \"$list\" | fzf $@"
+
