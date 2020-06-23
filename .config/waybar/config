@@ -4,8 +4,8 @@
   "modules-left": ["sway/workspaces", "tray"],
   "modules-center": ["clock#time", "clock#date"],
   "modules-right": [
-    "custom/net",
     "custom/ping",
+    "network",
     "memory",
     "cpu",
     "battery",
@@ -34,6 +34,14 @@
     "format-alt": "{time} {icon}",
     "format-icons": ["", "", "", "", ""]
   },
+  "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+  },
   "cpu": {
     "interval": 5,
     "tooltip": false,
@@ -56,15 +64,14 @@
     "interval": 10,
     "exec": "$HOME/.config/waybar/get_ping.sh"
   },
-  "custom/net": {
-    "format": "{}",
-    "interval": 1,
-    "exec": "$HOME/.config/waybar/get_network.sh"
-  },
   "pulseaudio": {
     "format": "{volume}% {icon}",
+    "format-alt": "{format_source}",
     "format-bluetooth": "{volume}% {icon}",
+    "format-bluetooth-muted": " {icon}",
     "format-muted": "",
+    "format-source": "{volume}% ",
+    "format-source-muted": "",
     "format-icons": {
       "headphone": "",
       "hands-free": "",
@@ -72,7 +79,7 @@
       "phone": "",
       "portable": "",
       "car": "",
-      "default": ["", ""]
+      "default": ["", "", ""]
     },
     "scroll-step": 1,
     "on-click": "pavucontrol"
